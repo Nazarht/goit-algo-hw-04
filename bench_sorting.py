@@ -42,25 +42,23 @@ def benchmark_algo_on_dataset(algo, data, repeats: int):
 
 
 def allowed_for_insertion(dataset, n):
-	if dataset == "reversed":
-		return n <= 3000
-	if dataset == "random":
-		return n <= 5000
-	# nearly_sorted and sorted
-	return n <= 10000
+	# if dataset == "reversed":
+	# 	return n <= 5000
+	# if dataset == "random":
+	# 	return n <= 5000
+
+	return n <= 50000
 
 
 def main():
 	repeats = 5
 	datasets = {}
 
-	# Sizes per dataset type
 	random_sizes = [1_000, 5_000, 10_000, 50_000, 100_000]
 	sorted_sizes = [1_000, 5_000, 10_000, 50_000, 100_000]
 	reversed_sizes = [1_000, 5_000, 10_000, 50_000]
 	nearly_sorted_sizes = [1_000, 5_000, 10_000, 50_000, 100_000]
 
-	# Prepare datasets
 	datasets["random"] = [(n, generate_random_list(n, seed=42)) for n in random_sizes]
 	datasets["sorted"] = [(n, generate_sorted_list(n)) for n in sorted_sizes]
 	datasets["reversed"] = [(n, generate_reversed_list(n)) for n in reversed_sizes]
